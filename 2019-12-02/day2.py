@@ -48,6 +48,16 @@ def part_1(initial_state, noun, verb):
     intcodes[2] = verb
     return run_code(intcodes).split(',')[0]
 
+def part_2(initial_state):
+    length_state = len(initial_state.split(','))
+    for noun in range(length_state):
+        for verb in range(length_state):
+            output = part_1(initial_state, noun, verb)
+            if output == "19690720":
+
+                output_template = "noun: {}\tverb: {}\t output:{}\tanswer: {}"
+                print(output_template.format(output, noun, verb, 100*noun+verb))
+
 
 def get_initial_state(filename):
     with open(filename) as f:
@@ -56,11 +66,9 @@ def get_initial_state(filename):
 
 if __name__ == "__main__":
     initial_state = get_initial_state('input.txt')
-    for noun in range(100):
-        for verb in range(100):
-            output = part_1(initial_state, noun, verb)
-            if output == 19690720:
-                print(output, noun, verb, 100*noun+verb)
-    
-    output = part_1(initial_state, 12, 2)
-    print(output, 12, 2, 100*12+2)
+    noun = 12
+    verb = 2
+    output_template = "noun: {}\tverb: {}\t output:{}"
+    print(output_template.format(noun, verb, part_1(initial_state, noun, verb)))
+    part_2(initial_state)
+
