@@ -49,14 +49,18 @@ def part_1(initial_state, noun, verb):
     return run_code(intcodes).split(',')[0]
 
 
+def get_initial_state(filename):
+    with open(filename) as f:
+        return f.read()
+
+
 if __name__ == "__main__":
-    with open('input.txt') as f:
-        initial_state = f.read()
-        for noun in range(100):
-            for verb in range(100):
-                output = part_1(initial_state, noun, verb)
-                if output == 19690720:
-                    print(output, noun, verb, 100*noun+verb)
-        
-        output = part_1(initial_state, 12, 2)
-        print(output, 12, 2, 100*12+2)
+    initial_state = get_initial_state('input.txt')
+    for noun in range(100):
+        for verb in range(100):
+            output = part_1(initial_state, noun, verb)
+            if output == 19690720:
+                print(output, noun, verb, 100*noun+verb)
+    
+    output = part_1(initial_state, 12, 2)
+    print(output, 12, 2, 100*12+2)
